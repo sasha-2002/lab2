@@ -1,9 +1,24 @@
-let map;
+var map;
+
 
 function initMap() {
+  const myLatLng = { lat: 49.22619321320788, lng: 28.41249926315556 };
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 50.45768752688416, lng: 30.52579633229511 },
-    //50.45768752688416, 30.52579633229511
-    zoom: 8,
+    zoom: 14,
+    center: myLatLng,
+  });
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+  });
+
+  var info = new google.maps.InfoWindow({
+      content: '<h2>Sasha</h2>'
+  });
+
+  marker.addListener('click', function(){
+    info.open(map, marker);
   });
 }
+
