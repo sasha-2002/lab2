@@ -1,12 +1,11 @@
 var map;
 
 
-
-
-
 function initMap() {
+  var marker;
+  var markers = [];
   const myLatLng = { lat: 49.22619321320788, lng: 28.41249926315556 };
-  const infowindow = new google.maps.InfoWindow({
+  var infowindow = new google.maps.InfoWindow({
     content: '<h2>Sasha</h2>'
   });
   map = new google.maps.Map(document.getElementById("map"), {
@@ -15,17 +14,21 @@ function initMap() {
   });
  
   map.addListener('click', (e) => {
-    var marker_1 = new google.maps.Marker({
+    markers.push(
+      new google.maps.Marker({
       position: e.latLng,
       map: map,
-      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-    });
-    marker_1.addListener('click', (e) => {
-      infowindow.open(map, marker_1);
+      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    }));
+    markers[markers.length-1].addListener('click', function(){
+      infoWindow.setContent(
+        JSON.stringify(e.latLng.toJSON(), null, 2)
+      );
+      infowindow.open(map, this);     
     });
     
   });
-  
+ 
   
 }
 
