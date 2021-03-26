@@ -2,7 +2,7 @@ var map;
 var marker;
 function initMap() {
   marker = new google.maps.Marker();
-  var markers = [];
+
   const myLatLng = { lat: 49.22619321320788, lng: 28.41249926315556 };
 
   var infowindow = new google.maps.InfoWindow({  });
